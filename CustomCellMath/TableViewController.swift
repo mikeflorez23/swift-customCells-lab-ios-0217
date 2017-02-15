@@ -9,7 +9,6 @@
 import UIKit
 
 class TableViewController: UITableViewController {
-    
     // an array of arrays
     // i.e. [[1, 2, 3, 4], [5, 3, 1, 0], [5, 2, 6, 6]]
     var numbers: [[Int]] = []
@@ -20,11 +19,38 @@ class TableViewController: UITableViewController {
     }
     
     
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return numbers.count
+    }
     
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "mathCell", for: indexPath) as! MathTableViewCell
+        
+        let number = numbers[indexPath.row]
+        
+        
+        //        cell.configureCell(number: number)
+        
+        cell.firstNumberLabel.text = String(number[0])
+        cell.secondNumberLabel.text = String(number[1])
+        cell.thirdNumberLabel.text = String(number[2])
+        cell.fourthNumberLabel.text = String(number[3])
+        
+        return cell
+    }
     
-
-
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let dest = segue.destination as? DisplayMathViewController,
+            let indexPath = tableView.indexPathForSelectedRow {
+            dest.numbers = numbers[indexPath.row]
+        }
+    }
 }
+
+
+
+
+
 
 
 
@@ -47,6 +73,5 @@ extension TableViewController {
     func randomNumberFromOneTo(_ number: Int) -> Int {
         return Int(arc4random_uniform(UInt32(number)) + 1)
     }
-    
     
 }

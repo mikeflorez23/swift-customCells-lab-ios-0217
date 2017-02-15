@@ -14,5 +14,16 @@ class MathTableViewCell: UITableViewCell {
     @IBOutlet weak var secondNumberLabel: UILabel!
     @IBOutlet weak var thirdNumberLabel: UILabel!
     @IBOutlet weak var fourthNumberLabel: UILabel!
+    
+    
+    
+//    func configureCell(number: [Int]) {
+//       firstNumberLabel.text = String(number[0])
+//        secondNumberLabel.text = String(number[1])
+//        thirdNumberLabel.text = String(number[2])
+//        fourthNumberLabel.text = String(number[3])
+//
+//        
+//    }
 
 }
